@@ -7,7 +7,7 @@ public class BoardBar : MonoBehaviour
     public BarType barType;
 
     public Stack<GameObject> barStack = new Stack<GameObject>();
-     //하노이 타워 스크립트에서 활동
+    
 
     private void OnMouseDown()
     {
@@ -60,7 +60,7 @@ public class BoardBar : MonoBehaviour
         barStack.Push(donut); //도넛을 바스택에 넣는다. 
     }
     public GameObject PopDonut()
-    {
+    {        
         GameObject donut = barStack.Pop(); // 스택에서 게임오브젝트 꺼내기 
         return (donut); //꺼낸 도넛 반환 
     }

@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6590a4e52cc0a484cae53ef04651fd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hanoiLevel: 2
+  hanoiLevel: 4
   donutPrefabs:
   - {fileID: 9068168891205894574, guid: 82c0bd4c9b6d1ae44bd77088d733a7d2, type: 3}
   - {fileID: 7067272795761118017, guid: 7f13f568c73ace54f926ac594629d294, type: 3}

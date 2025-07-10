@@ -68,7 +68,7 @@ public class BoardBar : MonoBehaviour
             HanoiTowerManager.isSelected = true; //Ω«¡¶∑Œ ≤®≥¬¿ª ∂ß∏∏ true ∑Œ πŸ≤Ó∞‘
             GameObject donut = barStack.Pop(); // Ω∫≈√ø°º≠ ∞‘¿”ø¿∫Í¡ß∆Æ ≤®≥ª±‚ 
 
-            return (donut); //≤®≥Ω µµ≥” π›»Ø 
+            return donut; //≤®≥Ω µµ≥” π›»Ø 
 
         }
         return null;

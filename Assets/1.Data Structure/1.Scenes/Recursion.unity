@@ -342,6 +342,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1538789879}
   - component: {fileID: 1538789878}
+  - component: {fileID: 1538789881}
+  - component: {fileID: 1538789880}
   m_Layer: 0
   m_Name: Recursion
   m_TagString: Untagged
@@ -356,7 +358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538789877}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c35599828702d3b4c8f4bb520a2c1d8d, type: 3}
   m_Name: 
@@ -376,6 +378,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1538789880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538789877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4856e7980a72cc48a5fda77ef4ecf6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  array: 010000000200000003000000
+--- !u!114 &1538789881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538789877}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c6ba3096b01f840b5c8c192c1c946b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

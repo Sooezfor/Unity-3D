@@ -23,6 +23,8 @@ public class ObjectPoolQueue : MonoBehaviour
 
     public void EnqueueObj(GameObject newobj)
     {
+        newobj.GetComponent<Rigidbody>().linearVelocity = Vector3.zero; //속도값 제로
+        newobj.GetComponent<Rigidbody>().angularVelocity = Vector3.zero; //회전값 제로.
         objQueue.Enqueue(newobj);
         newobj.SetActive(false); 
     }

@@ -13,7 +13,7 @@ public class BoardBar : MonoBehaviour
     {
         if(!HanoiTowerManager.isSelected) //선택 안됐을 때
         {
-            HanoiTowerManager.isSelected = true;
+            
             HanoiTowerManager.selectDonut = PopDonut();
         }
         else //(true일때) 
@@ -50,6 +50,7 @@ public class BoardBar : MonoBehaviour
         if(!CheckDonut(donut))        
             return;
 
+        HanoiTowerManager.moveCount++;
         HanoiTowerManager.isSelected = false;
         HanoiTowerManager.selectDonut = null;
 
@@ -61,7 +62,15 @@ public class BoardBar : MonoBehaviour
     }
     public GameObject PopDonut()
     {        
-        GameObject donut = barStack.Pop(); // 스택에서 게임오브젝트 꺼내기 
-        return (donut); //꺼낸 도넛 반환 
+        if(barStack.Count > 0) //0인지 아닌지만 확인
+        {
+            HanoiTowerManager.nowBar = this;
+            HanoiTowerManager.isSelected = true; //실제로 꺼냈을 때만 true 로 바뀌게
+            GameObject donut = barStack.Pop(); // 스택에서 게임오브젝트 꺼내기 
+
+            return (donut); //꺼낸 도넛 반환 
+
+        }
+        return null;
     }
 }

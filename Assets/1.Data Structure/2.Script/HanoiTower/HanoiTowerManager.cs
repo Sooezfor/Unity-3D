@@ -1,11 +1,15 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.UI;
 
 public class HanoiTowerManager : MonoBehaviour
 {
     public enum HanoiLevel { Lv1 = 3, Lv2, Lv3 }
-    public HanoiLevel hanoiLevel;
+    public HanoiLevel hanoiLevel = HanoiLevel.Lv1;
+
+    public Button answerButton;
 
     public GameObject[] donutPrefabs; //도넛 배열 받기
     public BoardBar[] bars; //left, center, right 순서대로 넣을것
@@ -15,7 +19,12 @@ public class HanoiTowerManager : MonoBehaviour
     public static GameObject selectDonut;
     public static bool isSelected;
     public static BoardBar nowBar;
-    public static int moveCount; 
+    public static int moveCount;
+
+    private void Awake()
+    {
+        answerButton.onClick.AddListener(HanoiAnswer);
+    }
 
     IEnumerator Start()
     {
@@ -43,5 +52,23 @@ public class HanoiTowerManager : MonoBehaviour
         }
         countText.text = moveCount.ToString(); // 업데이트문에 넣어서 갱신. 비효율적이긴 함
     }
-}
 
+    void HanoiAnswer()
+    {
+        HanoiRoutine((int)hanoiLevel, 0, 1, 2); //도넛 개수, 기둥 0,1,2 
+    }
+    void HanoiRoutine(int n, int from, int temp, int to)//기둥이 순서대로 from, temp, to임
+    {
+        if (n == 0) //옮길 도넛이 없다. 다 옮김.
+            return;
+
+        if (n == 1) //1번 도넛이 남음. 제일 작은 도넛 
+            Debug.Log($"'{n}번 도넛을 {from}에서 {to}로 이동");
+        else
+        {
+            HanoiRoutine(n - 1, from, to, temp); //
+            Debug.Log($"'{n}번 도넛을 {from}에서 {to}로 이동");
+            HanoiRoutine(n - 1, temp, from, to); //
+        }
+    }
+}

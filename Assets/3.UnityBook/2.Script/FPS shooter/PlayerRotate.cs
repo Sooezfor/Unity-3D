@@ -13,7 +13,6 @@ public class PlayerRotate : MonoBehaviour
 
         mx += mouse_X * rotSpeed * Time.deltaTime;
 
-        transform.eulerAngles = new Vector3(0, mx, 0); //값 회전하는 곳, 적용 
-        
+        transform.eulerAngles = new Vector3(0, mx, 0); //값 회전하는 곳, 적용         
     }
 }

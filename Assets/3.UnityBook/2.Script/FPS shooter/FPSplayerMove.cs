@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class FPSplayerMove : MonoBehaviour
 {
@@ -51,6 +50,4 @@ public class FPSplayerMove : MonoBehaviour
             yVelocity = jumpPower;
         }
     }
-
-    
 }

@@ -1,0 +1,56 @@
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
+
+public class FPSplayerMove : MonoBehaviour
+{
+    CharacterController cc;
+
+    public float moveSpeed = 7f;
+
+    float gravity = -20f; //중력값 세게 줘야해서
+    float yVelocity = 0f;
+
+    float jumpPower = 10f;
+    bool isJumping = false; 
+
+    private void Start()
+    {
+        cc = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v  = Input.GetAxis("Vertical");
+
+        Vector3 dir = new Vector3(h, 0, v);
+        dir = dir.normalized; //방향만 있는 벡터
+
+        //카메라의 트랜스폼 기준으로 움직임 방향 변환
+        dir = Camera.main.transform.TransformDirection(dir);
+
+        //transform.position += dir * moveSpeed * Time.deltaTime;
+
+        // 중력 적용
+        yVelocity += gravity * Time.deltaTime; //-값으로 누적됨 
+        dir.y = yVelocity; 
+
+        cc.Move(dir * moveSpeed * Time.deltaTime); //캐릭터 컨트롤러에 내장된 이동 기능
+
+        if (cc.collisionFlags == CollisionFlags.Below) //아래에 무엇인가 닿으면
+        {
+            if(isJumping)            
+                isJumping = false; //점핑값 초기화            
+            
+             yVelocity = 0f; //누적 중력값 초기화
+        }
+
+        if(Input.GetButtonDown("Jump") && !isJumping) //2단 점프 방지 
+        {
+            isJumping = true; 
+            yVelocity = jumpPower;
+        }
+    }
+
+    
+}

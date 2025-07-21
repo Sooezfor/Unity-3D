@@ -1,4 +1,5 @@
 using System.Collections;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,8 @@ public class EnemyFSM : MonoBehaviour
     EnemyState m_State;
 
     Transform player;
-    CharacterController cc; 
+    CharacterController cc;
+    Animator anim;
 
     public float findDistance = 8f; //탐지 거리 
     public float attackDistance = 3f; //공격 가능 거리
@@ -30,9 +32,9 @@ public class EnemyFSM : MonoBehaviour
         cc = GetComponent<CharacterController>();
         player = GameObject.Find("Player").transform;
         originPos = transform.position; //생성 위치를 오리진 포즈로
+        anim = transform.GetComponentInChildren<Animator>(); 
 
         Cursor.visible = false; //커서 안 보이기
-
     }
 
     private void Update()
@@ -60,13 +62,13 @@ public class EnemyFSM : MonoBehaviour
         }
 
         hpSlider.value = (float)hp / (float)maxHp;
-
     }
 
     void Idle()
     {
         if(Vector3.Distance(transform.position, player.position) < findDistance)
         {
+            anim.SetTrigger("IdleToMove"); //move 애니메이션 실행 키값 전달 
             m_State = EnemyState.Move;
             Debug.Log("상태 전환 : Idle -> Move");
         }                    
@@ -78,11 +80,13 @@ public class EnemyFSM : MonoBehaviour
         {
             m_State = EnemyState.Return;
             Debug.Log("상태 전환: Move -> Return");
+            
         }                
         else if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
             Vector3 dir = (player.position - transform.position).normalized; //특정 타겟과의 방향과 이동거리까지 구하는 방법
             cc.Move(dir * moveSpeed * Time.deltaTime);
+            transform.forward = dir; //이동 방향을 정면으로 초기화
         }
         else
         {
@@ -118,15 +122,16 @@ public class EnemyFSM : MonoBehaviour
         {
             Vector3 dir = (originPos - transform.position).normalized;
             cc.Move(dir * moveSpeed * Time.deltaTime);
+            transform.forward = dir;
 
         }
         else //원래 위치로 도착한 경우
         {
             transform.position = originPos;
             hp = 15; //피 회복
+            anim.SetTrigger("MoveToIdle");
             m_State = EnemyState.Idle;
             Debug.Log("상태 전환 : Return - > idle");
-
         }
     }
     public void HitEnemy(int hitPower)
@@ -163,8 +168,6 @@ public class EnemyFSM : MonoBehaviour
 
         m_State = EnemyState.Move;
         Debug.Log("상태 전환: Damaged -> Move");
-
-       
     }
 
     void Die()

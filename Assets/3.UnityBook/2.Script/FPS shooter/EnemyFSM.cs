@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyFSM : MonoBehaviour
 {
-    enum EnemyState { Idle, Move, Attack, Return, Damaged, DIe }
+    enum EnemyState { Idle, Move, Attack, Return, Damaged, Die }
     EnemyState m_State;
 
     Transform player;
@@ -56,7 +56,7 @@ public class EnemyFSM : MonoBehaviour
             case EnemyState.Damaged:
                 //Damaged();
                 break;
-            case EnemyState.DIe:
+            case EnemyState.Die:
                 //Die();
                 break;           
         }
@@ -136,22 +136,21 @@ public class EnemyFSM : MonoBehaviour
     }
     public void HitEnemy(int hitPower)
     {
-        if (m_State == EnemyState.Damaged || m_State == EnemyState.DIe || m_State == EnemyState.Return)
+        if (m_State == EnemyState.Damaged || m_State == EnemyState.Die || m_State == EnemyState.Return)
             return;
 
         
         hp -= hitPower;
 
         if (hp > 0) //공격을 받았는데 살았다면 
-        {
-            if(hp > 0)
+        {            
             m_State = EnemyState.Damaged;
             Debug.Log("상태 전환 : Any State -> Damaged");
             Damaged();                
         }
         else //공격 받고 죽음
         {
-            m_State = EnemyState.DIe;
+            m_State = EnemyState.Die;
             Debug.Log("상태 전환 : Any State -> Die ");
             Die();
         }

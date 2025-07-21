@@ -1,0 +1,186 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class EnemyFSM : MonoBehaviour
+{
+    enum EnemyState { Idle, Move, Attack, Return, Damaged, DIe }
+    EnemyState m_State;
+
+    Transform player;
+    CharacterController cc; 
+
+    public float findDistance = 8f; //탐지 거리 
+    public float attackDistance = 3f; //공격 가능 거리
+    public float moveSpeed = 5f; //이동 속도
+    float currentTime = 0f; //타이머 
+    float attackDelay = 2f; //딜레이
+
+    public int attackPower = 3;
+    public int hp = 15;
+    int maxHp = 15;
+    public Slider hpSlider;
+
+    Vector3 originPos;
+    public float moveDistance = 20f; //처음 위치에서부터 20미터까지 쫓아갈 수 잇다 
+
+    private void Start()
+    {
+        m_State = EnemyState.Idle;
+        cc = GetComponent<CharacterController>();
+        player = GameObject.Find("Player").transform;
+        originPos = transform.position; //생성 위치를 오리진 포즈로
+
+        Cursor.visible = false; //커서 안 보이기
+
+    }
+
+    private void Update()
+    {
+        switch (m_State)
+        {
+            case EnemyState.Idle:
+                Idle();
+                break;
+            case EnemyState.Move:
+                Move(); 
+                break;
+            case EnemyState.Attack:
+                Attack();
+                break;
+            case EnemyState.Return:
+                Return();
+                break;
+            case EnemyState.Damaged:
+                //Damaged();
+                break;
+            case EnemyState.DIe:
+                //Die();
+                break;           
+        }
+
+        hpSlider.value = (float)hp / (float)maxHp;
+
+    }
+
+    void Idle()
+    {
+        if(Vector3.Distance(transform.position, player.position) < findDistance)
+        {
+            m_State = EnemyState.Move;
+            Debug.Log("상태 전환 : Idle -> Move");
+        }                    
+    }
+
+    private void Move()
+    {
+        if(Vector3.Distance(transform.position, originPos) > moveDistance)
+        {
+            m_State = EnemyState.Return;
+            Debug.Log("상태 전환: Move -> Return");
+        }                
+        else if (Vector3.Distance(transform.position, player.position) > attackDistance)
+        {
+            Vector3 dir = (player.position - transform.position).normalized; //특정 타겟과의 방향과 이동거리까지 구하는 방법
+            cc.Move(dir * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            currentTime = attackDelay;
+            m_State = EnemyState.Attack;
+            Debug.Log("상태 전환 : Move -> Attack");
+        }
+    }
+
+    void Attack()
+    {
+        if(Vector3.Distance(transform.position, player.position) < attackDistance)
+        {
+            currentTime += Time.deltaTime; //타이머처럼 만들기
+            if(currentTime > attackDelay)
+            {
+                currentTime = 0f; //재활용 하기 위해 초기화
+                player.GetComponent<FPSplayerMove>().DamageAction(attackPower);
+                Debug.Log("공격");
+            }
+        }
+        else
+        {
+            currentTime = 0f;
+            m_State = EnemyState.Move;
+            Debug.Log("상태 전환 : Attack -> Move");
+        }
+    }
+
+    void Return()
+    {
+        if(Vector3.Distance(transform.position, originPos) > 0.1f) //원래 위치가 아닌 경우 원래 위치로 이동
+        {
+            Vector3 dir = (originPos - transform.position).normalized;
+            cc.Move(dir * moveSpeed * Time.deltaTime);
+
+        }
+        else //원래 위치로 도착한 경우
+        {
+            transform.position = originPos;
+            hp = 15; //피 회복
+            m_State = EnemyState.Idle;
+            Debug.Log("상태 전환 : Return - > idle");
+
+        }
+    }
+    public void HitEnemy(int hitPower)
+    {
+        if (m_State == EnemyState.Damaged || m_State == EnemyState.DIe || m_State == EnemyState.Return)
+            return;
+
+        
+        hp -= hitPower;
+
+        if (hp > 0) //공격을 받았는데 살았다면 
+        {
+            if(hp > 0)
+            m_State = EnemyState.Damaged;
+            Debug.Log("상태 전환 : Any State -> Damaged");
+            Damaged();                
+        }
+        else //공격 받고 죽음
+        {
+            m_State = EnemyState.DIe;
+            Debug.Log("상태 전환 : Any State -> Die ");
+            Die();
+        }
+
+    }
+    void Damaged()
+    {
+        StartCoroutine(DamageProcess());
+    }
+
+    IEnumerator DamageProcess()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        m_State = EnemyState.Move;
+        Debug.Log("상태 전환: Damaged -> Move");
+
+       
+    }
+
+    void Die()
+    {
+        StopAllCoroutines();
+
+        StartCoroutine(DieProcess());
+    }
+
+    IEnumerator DieProcess()
+    {
+        cc.enabled = false; //움직이지 않도록
+
+        yield return new WaitForSeconds(2f);
+        Debug.Log("소멸");
+        Destroy(gameObject);
+    }
+
+}

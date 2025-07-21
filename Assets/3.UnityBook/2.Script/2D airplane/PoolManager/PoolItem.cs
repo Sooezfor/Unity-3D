@@ -9,7 +9,6 @@ public class PoolItem : MonoBehaviour
     {
         poolManager = GameObject.FindFirstObjectByType<PoolManager>();
     }
-
     private void OnEnable()
     {
         if (!isInit)
@@ -17,7 +16,6 @@ public class PoolItem : MonoBehaviour
         else
             Invoke("ReturnObject", 3f);
     }
-
     void ReturnObject()
     {
         poolManager.pool.Release(gameObject);

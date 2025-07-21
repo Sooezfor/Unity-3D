@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SingleTon<T> : MonoBehaviour where T : Component
+public class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance; //내부변수
     public static T Instance //프로퍼티
@@ -32,7 +32,7 @@ public class SingleTon<T> : MonoBehaviour where T : Component
         if (instance == null) //할당해서 싱글톤화
         {
             instance = this as T; //상속받는 타입 뱉어냄
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
        //else 중복 제거
             //Destroy(gameObject);

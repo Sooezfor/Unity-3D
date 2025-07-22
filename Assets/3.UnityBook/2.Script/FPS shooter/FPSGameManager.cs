@@ -28,6 +28,7 @@ public class FPSGameManager : SingleTon<FPSGameManager>
     {
         if(player.hp <= 0)
         {
+            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f); //아무런 애니메이션 안되게끔
             gameLabel.SetActive(true);
             gameText.text = "GAME OVER";
 

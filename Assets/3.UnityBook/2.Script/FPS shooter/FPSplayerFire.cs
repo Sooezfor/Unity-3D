@@ -6,6 +6,7 @@ public class FPSplayerFire : MonoBehaviour
     public GameObject bombFactory;
     public GameObject bulletEffect;
     private ParticleSystem ps;
+    Animator anim;
 
     public float throwPower = 15f;
     public int weaponPower = 5;
@@ -14,6 +15,7 @@ public class FPSplayerFire : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         ps = bulletEffect.GetComponent<ParticleSystem>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -23,6 +25,10 @@ public class FPSplayerFire : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) //마우스 왼쪽버튼 
         {
+            if(anim.GetFloat("MoveMotion") == 0) //이동하지 않을 때만
+            {
+                anim.SetTrigger("Shoot");
+            }
             //카메라의 앞으로 나가는 레이저
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             RaycastHit hitInfo = new RaycastHit();

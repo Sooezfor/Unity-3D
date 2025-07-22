@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class FPSplayerMove : MonoBehaviour
 {
     CharacterController cc;
+    Animator anim;
 
     public float moveSpeed = 7f;
 
@@ -20,11 +21,10 @@ public class FPSplayerMove : MonoBehaviour
     public Slider hpSlider;
     public GameObject hitEffect;
 
-
     private void Start()
     {
         cc = GetComponent<CharacterController>();
-
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -32,17 +32,16 @@ public class FPSplayerMove : MonoBehaviour
         if (FPSGameManager.Instance.gState != FPSGameManager.GameState.Run)
             return;
 
-
         float h = Input.GetAxis("Horizontal");
         float v  = Input.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized; //방향만 있는 벡터
 
+        anim.SetFloat("MoveMotion", dir.magnitude);
+
         //카메라의 트랜스폼 기준으로 움직임 방향 변환
         dir = Camera.main.transform.TransformDirection(dir);
-
-        //transform.position += dir * moveSpeed * Time.deltaTime;
 
         // 중력 적용
         yVelocity += gravity * Time.deltaTime; //-값으로 누적됨 

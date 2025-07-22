@@ -24,6 +24,7 @@ public class EnemyFSM : MonoBehaviour
     public Slider hpSlider;
 
     Vector3 originPos;
+    Quaternion originRot;
     public float moveDistance = 20f; //처음 위치에서부터 20미터까지 쫓아갈 수 잇다 
 
     private void Start()
@@ -32,6 +33,7 @@ public class EnemyFSM : MonoBehaviour
         cc = GetComponent<CharacterController>();
         player = GameObject.Find("Player").transform;
         originPos = transform.position; //생성 위치를 오리진 포즈로
+        originRot = transform.rotation;
         anim = transform.GetComponentInChildren<Animator>(); 
 
         Cursor.visible = false; //커서 안 보이기
@@ -122,7 +124,6 @@ public class EnemyFSM : MonoBehaviour
     {
          player.GetComponent<FPSplayerMove>().DamageAction(attackPower);
     }
-
     void Return()
     {
         if(Vector3.Distance(transform.position, originPos) > 0.1f) //원래 위치가 아닌 경우 원래 위치로 이동
@@ -135,6 +136,8 @@ public class EnemyFSM : MonoBehaviour
         else //원래 위치로 도착한 경우
         {
             transform.position = originPos;
+            transform.rotation = originRot;
+
             hp = 15; //피 회복
             anim.SetTrigger("MoveToIdle");
             m_State = EnemyState.Idle;
@@ -175,7 +178,6 @@ public class EnemyFSM : MonoBehaviour
         m_State = EnemyState.Move;
         Debug.Log("상태 전환: Damaged -> Move");
     }
-
     void Die()
     {
         StopAllCoroutines();
@@ -191,5 +193,4 @@ public class EnemyFSM : MonoBehaviour
         Debug.Log("소멸");
         Destroy(gameObject);
     }
-
 }

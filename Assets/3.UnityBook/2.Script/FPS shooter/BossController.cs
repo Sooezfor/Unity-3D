@@ -1,0 +1,18 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+public class BossController : MonoBehaviour
+{
+    NavMeshAgent agent;
+    public Transform target;
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
+        agent.SetDestination(target.position);
+    }
+}

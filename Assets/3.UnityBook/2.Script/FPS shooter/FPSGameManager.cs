@@ -16,6 +16,7 @@ public class FPSGameManager : SingleTon<FPSGameManager>
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         gameText = gameLabel.GetComponent<TextMeshProUGUI>();
 
         gameText.text = "Ready...";
@@ -71,8 +72,8 @@ public class FPSGameManager : SingleTon<FPSGameManager>
     public void RestartGame()
     {
         Time.timeScale = 1f;        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //현재 실행 중인 씬 가져옴. 리로드인 셈
+        SceneManager.LoadScene(1);
+        //로딩씬 가져오기
     }
 
     public void QuitGame()

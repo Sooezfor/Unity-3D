@@ -24,7 +24,9 @@ public class FPSplayerFire : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false; //커서 안 보이기
+
         ps = bulletEffect.GetComponent<ParticleSystem>();
         anim = GetComponentInChildren<Animator>();
 
@@ -73,7 +75,7 @@ public class FPSplayerFire : MonoBehaviour
                     bomb.transform.position = firePosition.transform.position; //위치만 설정
 
                     Rigidbody rb = bomb.GetComponent<Rigidbody>();
-                    rb.AddForce(Camera.main.transform.forward * throwPower, ForceMode.Impulse); //카메라가 바라보는 방향쪽으로 던지는 힘만큼)
+                    rb.AddForce((Camera.main.transform.forward + Camera.main.transform.up * 0.5f) * throwPower, ForceMode.Impulse); //카메라가 바라보는 방향쪽으로 던지는 힘만큼)
                     break;
                 case WeaponMode.Sniper:
                     //if (!ZoomMode)

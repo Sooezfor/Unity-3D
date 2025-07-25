@@ -38,8 +38,7 @@ public class EnemyFSM : MonoBehaviour
         originRot = transform.rotation;
         anim = transform.GetComponentInChildren<Animator>();
         smith = GetComponent<NavMeshAgent>();
-
-        Cursor.visible = false; //커서 안 보이기
+       
     }
 
     private void Update()

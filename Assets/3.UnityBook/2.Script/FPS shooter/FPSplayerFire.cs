@@ -16,6 +16,7 @@ public class FPSplayerFire : MonoBehaviour
 
     public GameObject crosshair01;
     public GameObject crosshair02;
+    public GameObject crosshair02_zoom;
 
     public GameObject weapon01_R;
     public GameObject weapon02_R;
@@ -34,8 +35,8 @@ public class FPSplayerFire : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false; //커서 안 보이기
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false; //커서 안 보이기
 
         ps = bulletEffect.GetComponent<ParticleSystem>();
         anim = GetComponentInChildren<Animator>();
@@ -47,6 +48,9 @@ public class FPSplayerFire : MonoBehaviour
     {
         if (FPSGameManager.Instance.gState != FPSGameManager.GameState.Run)
             return;
+
+        #region 마우스 왼쪽 클릭
+
 
         if (Input.GetMouseButtonDown(0)) //마우스 왼쪽버튼 
         {
@@ -76,7 +80,10 @@ public class FPSplayerFire : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButtonDown(1)) //마우스 오른쪽
+        #endregion
+
+        #region 마우스 오른쪽 클릭
+        if (Input.GetMouseButtonDown(1)) //마우스 오른쪽
         {
             switch(wMode)
             {
@@ -88,25 +95,34 @@ public class FPSplayerFire : MonoBehaviour
                     rb.AddForce((Camera.main.transform.forward + Camera.main.transform.up * 0.5f) * throwPower, ForceMode.Impulse); //카메라가 바라보는 방향쪽으로 던지는 힘만큼)
                     break;
                 case WeaponMode.Sniper:
-                    //if (!ZoomMode)
+                     ZoomMode = !ZoomMode; //현재의 반대. false면 true로 바꾸고.                  
+
+                     float fov = ZoomMode ? 15f : 60f;
+                     Camera.main.fieldOfView = fov;
+
+                     crosshair02_zoom.SetActive(true);
+                     crosshair02.SetActive(!ZoomMode);
+                     break;                    
+
+                    //if(ZoomMode)
                     //{
-                    //    Camera.main.fieldOfView = 15f; //줌 기능처럼 확대
-                    //    ZoomMode = true;
+                    //    crosshair02_zoom.SetActive(true);
+                    //    crosshair02.SetActive(false);
+
                     //}
                     //else
                     //{
-                    //    Camera.main.fieldOfView = 60f;
-                    //    ZoomMode = false;
-                    //} 아래 3항 연산자로 줄일 수 있음
+                    //    crsoohair02_zoom.SetActive(false);
+                    //    crosshair02.SetActive(true);
 
-                    float fov = ZoomMode ? 60f : 15f;
-                    Camera.main.fieldOfView = fov;
-                    ZoomMode = !ZoomMode; //현재의 반대. false면 true로 바꾸고.
-                    break;                    
+                    //}
+
             }
         }
+        #endregion 마우스 오른쪽 클릭
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)) //키보드 위에 번호임
+        #region 키보드 1번 클릭
+        if (Input.GetKeyDown(KeyCode.Alpha1)) //키보드 위에 번호임
         {
             wMode = WeaponMode.Normal;
             Camera.main.fieldOfView = 60f;
@@ -119,8 +135,12 @@ public class FPSplayerFire : MonoBehaviour
             weapon02_R.SetActive(false);
             crosshair01.SetActive(true);
             crosshair02.SetActive(false);
+            crosshair02_zoom.SetActive(false);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        #endregion
+
+        #region 키보드 2번 클릭
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             wMode = WeaponMode.Sniper;
 
@@ -131,8 +151,9 @@ public class FPSplayerFire : MonoBehaviour
             weapon02.SetActive(true);
             weapon02_R.SetActive(true);
             crosshair01.SetActive(false);
-            crosshair02.SetActive(true);
+            crosshair02.SetActive(true);            
         }
+        #endregion
     }
 
     IEnumerator ShootEffectOn(float duration)

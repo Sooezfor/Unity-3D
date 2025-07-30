@@ -12,7 +12,7 @@ public class FPSplayerMove : MonoBehaviour
     float gravity = -20f; //중력값 세게 줘야해서
     float yVelocity = 0f;
 
-    float jumpPower = 10f;
+    float jumpPower = 5f;
     bool isJumping = false;
 
     public int hp = 20;

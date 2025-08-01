@@ -15,8 +15,8 @@ public class FPSplayerFire : MonoBehaviour
     public GameObject weapon02;
 
     public GameObject crosshair01;
-    public GameObject crosshair02;
-    public GameObject crosshair02_zoom;
+    public GameObject crosshair02; //¡‹ ø°¿”
+    public GameObject crosshair02_zoom; //¡‹ »≠∏È
 
     public GameObject weapon01_R;
     public GameObject weapon02_R;
@@ -100,7 +100,7 @@ public class FPSplayerFire : MonoBehaviour
                      float fov = ZoomMode ? 15f : 60f;
                      Camera.main.fieldOfView = fov;
 
-                     crosshair02_zoom.SetActive(true);
+                     crosshair02_zoom.SetActive(ZoomMode);
                      crosshair02.SetActive(!ZoomMode);
                      break;                    
 
@@ -151,7 +151,8 @@ public class FPSplayerFire : MonoBehaviour
             weapon02.SetActive(true);
             weapon02_R.SetActive(true);
             crosshair01.SetActive(false);
-            crosshair02.SetActive(true);            
+            crosshair02.SetActive(true);
+            //crosshair02_zoom.SetActive(false);
         }
         #endregion
     }

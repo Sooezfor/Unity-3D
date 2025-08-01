@@ -1,22 +1,28 @@
+using System.Reflection;
 using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
     //길 따라가기 기능
 
+    //public Algorithm.
     public MakePath path;
     public float speed = 5f;
     public float mass = 5f;
     public bool isLooping = true;
 
-    float curSpeed;
-    int curPathIndex;
-    float pathLength;
     Vector3 targetPoint;
     Vector3 velocity;
 
+    float curSpeed;
+    int curPathIndex;
+    float pathLength;
+
+
     private void Start()
     {
+        int ranInt = Random.Range(0, 10);
+
         pathLength = path.points.Length;
         curPathIndex = 0;
 

@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class MoveState : IState
 {
-    public void StateEnter()
+    public void StateEnter(MonoBehaviour mono)
     {
-        
+        Debug.Log("Enter Move");
     }
 
-    public void StateExit()
+    public void StateUpdate(MonoBehaviour mono)
     {
-        
+        Debug.Log("Update Move");
     }
 
-    public void StateUpdate()
+
+    public void StateExit(MonoBehaviour mono)
     {
-        Debug.Log("Move");
+        Debug.Log("Exit Move");
     }
 }

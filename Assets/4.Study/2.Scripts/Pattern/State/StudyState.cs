@@ -3,20 +3,29 @@ using UnityEngine;
 
 public class StudyState : MonoBehaviour
 {
-    public IState state = new IdleState();
+    public IState state;
+
+    IState idleState = new IdleState();
+    IState moveState = new MoveState();
+    IState attackState = new AttackState();
+
+    private void Awake()
+    {
+        state = idleState;
+    }
 
     private void Start()
     {
-        state.StateEnter();
+        state.StateEnter(this);
     }
 
     private void OnDestroy()
     {
-        state.StateExit(); 
+        state.StateExit(this); 
     }
     private void Update()
     {
-        state?.StateUpdate();
+        state?.StateUpdate(this);
 
         #region 기능테스트
 
@@ -42,16 +51,12 @@ public class StudyState : MonoBehaviour
         if(state != newState)
         {
             //상태 변경 전
-            state.StateExit();
+            state.StateExit(this);
 
             state = newState; //상태 변경 
 
             //상태 변경 후 
-            state.StateEnter();
+            state.StateEnter(this);
         }
-
-
     }
-
-
 }

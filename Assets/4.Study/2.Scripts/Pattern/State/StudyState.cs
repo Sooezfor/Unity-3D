@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class StudyState : MonoBehaviour
@@ -31,16 +30,16 @@ public class StudyState : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SetState(new IdleState());
+            SetState(idleState);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SetState(new MoveState());
+            SetState(moveState);
 
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SetState(new AttackState());
+            SetState(attackState);
 
         }
         #endregion

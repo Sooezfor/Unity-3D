@@ -5,8 +5,8 @@ public class ScriptMananger : SingleTon<ScriptMananger>
 {
     public static Action action;
 
-    private void Awake()
-    {
-        //action += MethodA
-    }
+    //private void Awake()
+    //{
+    //    //action += MethodA
+    //}
 }

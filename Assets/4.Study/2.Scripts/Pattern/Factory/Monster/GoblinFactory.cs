@@ -9,13 +9,13 @@ public class GoblinFactory : MonsterFactory
         {
             case "Normal":
                 return new GameObject("Goblin").AddComponent<Goblin>();
-                break;
+                //break;
             case "Warrior":
                 return new GameObject("Goblin Warrior").AddComponent<GoblinWarrior>();
-                break;
+                //break;
             case "Archer":
                 return new GameObject("Goblin Archer").AddComponent<GoblinArcher>();
-                break;
+                //break;
             default:
                 Debug.LogError($"Unknonw Monster Type : {type}");
                 break;

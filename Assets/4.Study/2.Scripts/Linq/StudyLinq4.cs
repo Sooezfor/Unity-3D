@@ -11,9 +11,9 @@ public class StudyLinq4 : MonoBehaviour
         public int studentID;
         public string studentName;
 
-        public Student(int sutdentID, string studentName)
+        public Student(int studentID, string studentName)
         {
-            this.studentID = sutdentID;
+            this.studentID = studentID;
             this.studentName = studentName;
         }
     }

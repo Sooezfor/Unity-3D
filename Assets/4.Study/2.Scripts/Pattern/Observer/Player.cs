@@ -8,8 +8,8 @@ namespace Pattern
         int score;
 
         bool isQClear1 = false;
-        bool isQClear2 = false;
-        bool isQclear3 = false;
+        //bool isQClear2 = false;
+        //bool isQclear3 = false;
 
         public int GetScore()
         {

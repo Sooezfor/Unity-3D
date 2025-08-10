@@ -18,5 +18,4 @@ namespace Pattern
             Debug.Log($"현재 점수 : {newScore}");
         }
     }
-
 }

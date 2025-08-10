@@ -2,7 +2,7 @@ using System.IO;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData
+public class SaveData1
 {
     public int score;
 }
@@ -34,7 +34,7 @@ public class SaveDataFile : MonoBehaviour
     }
     void Save()
     {
-        SaveData data = new SaveData();
+        SaveData1 data = new SaveData1();
         data.score = this.score;
        
         string json = JsonUtility.ToJson(data);
@@ -49,7 +49,7 @@ public class SaveDataFile : MonoBehaviour
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            SaveData1 data = JsonUtility.FromJson<SaveData1>(json);
             this.score = data.score;
         }
         else

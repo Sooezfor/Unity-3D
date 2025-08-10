@@ -18,6 +18,4 @@ public class AttackState : IState
     {
         Debug.Log("Exit Attack");
     }
-
-
 }

@@ -9,14 +9,14 @@ public class OrcFactory : MonsterFactory
         {
             case "Normal":
                 return new GameObject("Orc").AddComponent<Orc>();
-                break;
+                //break;
                 
             case "Warrior":
                 return new GameObject("Orc Warrior").AddComponent<OrcWarrior>();
-                break;
+                //break;
             case "Archer":
                 return new GameObject("Orc Archer").AddComponent<OrcArcher>();
-                break;
+                //break;
             default:
                 Debug.LogError($"Unknonw Monster Type : {type}");
                 break;

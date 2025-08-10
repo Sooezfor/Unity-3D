@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 1481489647}
   - component: {fileID: 1481489648}
   - component: {fileID: 1481489649}
+  - component: {fileID: 1481489650}
   m_Layer: 0
   m_Name: linq
   m_TagString: Untagged
@@ -793,9 +794,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481489644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c75ff946770e31d4fbc209330b47f69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  students: []
+  grades: []
+--- !u!114 &1481489650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481489644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc3b622c2606d4449a4e7d3be111046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   students: []
@@ -818,7 +833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1525180943
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -924,7 +939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1617326966
 Transform:
   m_ObjectHideFlags: 0

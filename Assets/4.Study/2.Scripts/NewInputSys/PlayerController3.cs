@@ -8,7 +8,7 @@ public class PlayerController3 : MonoBehaviour
     Vector2 moveInput;
     public float speed = 5f;
 
-    public InputActionAsset inputActionAsset;
+    //public InputActionAsset inputActionAsset;
     InputAction moveAction;
     InputAction jumpAction;
     InputAction interactionAction;

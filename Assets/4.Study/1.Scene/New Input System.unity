@@ -369,7 +369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &173788099
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  inputActionAsset: {fileID: 0}
+  inputActionAsset: {fileID: -944628639613478452, guid: ce74a39c37f6ea24fb9c8e36aebcd76e, type: 3}
 --- !u!143 &173788104
 CharacterController:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &923256701
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public class GridManager : SingleTon<GridManager>
@@ -20,8 +19,13 @@ public class GridManager : SingleTon<GridManager>
     void Awake()
     {
         base.Awake();
+    }
+
+    private void Start()
+    {
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
         CalculateObstacles();
+        
     }
 
     private void CalculateObstacles()

@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine.AI;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.AI;
 
 public class EnemyFSM : MonoBehaviour
 {

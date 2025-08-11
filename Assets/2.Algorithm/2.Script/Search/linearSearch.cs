@@ -10,7 +10,7 @@ public class linearSearch : MonoBehaviour
         LinearSearch(array, target);
     }
 
-    void LinearSearch(int[] array, int target)
+    public void LinearSearch(int[] array, int target)
     {
         for(int i = 0; i <array.Length; i++)
         {

@@ -17,10 +17,8 @@ public class GoogleSheetManager : MonoBehaviour
         UnityWebRequest www2 = UnityWebRequest.Post(URL,form); //요청 전달
         yield return www2.SendWebRequest();
 
-        string data = www.downloadHandler.text;
-        //string data2 = www2.downloadHandler.text;
+        string data = www.downloadHandler.text;        
 
-        Debug.Log(data);
-        //Debug.Log(data2);
+        Debug.Log(data);       
     }
 }

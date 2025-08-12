@@ -6,14 +6,14 @@ public class FieldEvent : MonoBehaviour
     [SerializeField] CinemachineClearShot clearShot;
     private void OnTriggerEnter(Collider other)
     {
-        clearShot.ChildCameras[0].Priority = 1;
-        clearShot.ChildCameras[1].Priority = 10;
+        if(other.CompareTag("Player"))
+            GameManager.Instance.SetcamerState(CameraState.Field);
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        clearShot.ChildCameras[0].Priority = 10;
-        clearShot.ChildCameras[1].Priority = 1;
+        if (other.CompareTag("Player"))
+            GameManager.Instance.SetcamerState(CameraState.Outside);
     }
 }

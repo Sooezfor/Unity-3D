@@ -8,6 +8,9 @@ public enum CameraState
 
 public class GameManager : SingleTon<GameManager>
 {
+    public FieldManager field;
+    public UIManager_Farm ui;
+
     public CameraState camState = CameraState.Outside;
 
     [SerializeField] CinemachineClearShot clearShot;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class FieldManager : MonoBehaviour
@@ -21,8 +20,6 @@ public class FieldManager : MonoBehaviour
     Camera mainCamera;
 
     [SerializeField] LayerMask fieldLayerMask;
-
-
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -91,8 +88,6 @@ public class FieldManager : MonoBehaviour
             }
         }
     }
-
-
     public void SetState(FieldState newState)
     {
         if (fieldState != newState)
@@ -112,7 +107,7 @@ public class FieldManager : MonoBehaviour
         {
             GameObject crop = Instantiate(crops[index]);
             Rigidbody cropRb = crop.GetComponent<Rigidbody>();
-            crop.transform.position = pos;
+            crop.transform.position = pos + Vector3.up * 0.5f;
 
             float ranX = Random.Range(-2f, 2f);
             float ranZ = Random.Range(-2f, 2f);

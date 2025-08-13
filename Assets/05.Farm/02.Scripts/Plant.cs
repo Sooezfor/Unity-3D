@@ -23,6 +23,16 @@ public class Plant : MonoBehaviour
         //time.delatTime. 시간 조각
     }
 
+    private void OnEnable()
+    {
+        WeatherSystem.weatherAction += SetGrowth;
+    }
+
+    private void OnDisable()
+    {
+        WeatherSystem.weatherAction -= SetGrowth;
+    }
+
     IEnumerator Start()
     {
         SetState(PlantState.Lv1);
@@ -55,6 +65,18 @@ public class Plant : MonoBehaviour
 
         }
         
+    }
+    void SetGrowth(WeatherType weatherType)
+    {
+        switch(weatherType)
+        {
+            case WeatherType.Sun:
+                break;
+            case WeatherType.Rain:
+                break;
+            case WeatherType.Snow:
+                break;
+        }    
     }
 
 }

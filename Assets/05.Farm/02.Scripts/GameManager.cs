@@ -10,6 +10,7 @@ public class GameManager : SingleTon<GameManager>
 {
     public FieldManager field;
     public UIManager_Farm ui;
+    public ItemManager item;
 
     public CameraState camState = CameraState.Outside;
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23000010868730278}
   - component: {fileID: 64000012418579600}
   - component: {fileID: 269469405836581089}
+  - component: {fileID: 2119071289253911883}
   m_Layer: 0
   m_Name: Corn
   m_TagString: Untagged
@@ -137,3 +138,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2119071289253911883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013408786146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835b1928c18d5f242885561ed6bc21d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: corn
+  icon: {fileID: 21300000, guid: 680b8e713b8bc2243a4bbca3c3775b36, type: 3}

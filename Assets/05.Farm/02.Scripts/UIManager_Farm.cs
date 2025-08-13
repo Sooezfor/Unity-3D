@@ -7,6 +7,7 @@ public class UIManager_Farm : MonoBehaviour
     [SerializeField] GameObject fieldUI;
     [SerializeField] GameObject houseUI;
     [SerializeField] GameObject animUi;
+    [SerializeField] GameObject invenUI;
 
     [SerializeField] GameObject seedUi;
 
@@ -26,6 +27,13 @@ public class UIManager_Farm : MonoBehaviour
             plantButtons[i].onClick.AddListener(() => GameManager.Instance.field.SetPlant(j));
         }
 
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            invenUI.SetActive(!invenUI.activeSelf);
+        }
     }
 
     void SeedButton()

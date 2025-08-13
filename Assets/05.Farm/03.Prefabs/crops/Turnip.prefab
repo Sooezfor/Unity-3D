@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23000012486212934}
   - component: {fileID: 64000012766461966}
   - component: {fileID: 5240659895376646856}
+  - component: {fileID: -7440962559944625995}
   m_Layer: 0
   m_Name: Turnip
   m_TagString: Untagged
@@ -137,3 +138,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7440962559944625995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011853396770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835b1928c18d5f242885561ed6bc21d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: turnip
+  icon: {fileID: 21300000, guid: 1cb30ec481ac58f4e955658fedfab862, type: 3}

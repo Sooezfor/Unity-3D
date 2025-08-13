@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,18 +13,22 @@ public class FarmerController : MonoBehaviour
     float turnSpeed = 10f;
     float currSpeed;
 
+    Vector3 velocity;
+    const float GRAVITY = -9.8f;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
     }
-
     private void Update()
     {
-        cc.Move(moveInput * currSpeed * Time.deltaTime);
+        velocity.y += GRAVITY;
+        var dir = moveInput * currSpeed + Vector3.up * velocity.y;
+
+        cc.Move(dir * Time.deltaTime); 
         Turn();
-        SetAnimation();
-      
+        SetAnimation();      
     }
     private void OnMove(InputValue value)
     {

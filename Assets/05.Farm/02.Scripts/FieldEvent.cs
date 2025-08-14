@@ -23,6 +23,7 @@ public class FieldEvent : MonoBehaviour
         {
             GameManager.Instance.SetcamerState(CameraState.Outside);
             GameManager.Instance.ui.ActivateFieldUI(false);
+            //GameManager.Instance.field.fieldState = FieldManager.FieldState.None;
 
         }
 

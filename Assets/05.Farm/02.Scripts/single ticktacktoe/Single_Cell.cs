@@ -10,7 +10,7 @@ public class Single_Cell : MonoBehaviour
     [SerializeField] TextMeshProUGUI cellText;
 
    
-    void SetText(string text)
+    public void SetText(string text)
     {
         cellText.text = text;
     }

@@ -6,7 +6,7 @@ public class Single_BoardTicTacToe
     public int[,] board;
     const int ROWS = 3, COLS = 3; //¾È¹Ù²î´Â °ª
 
-    int player; 
+    public int player; 
 
     public Single_BoardTicTacToe()
     {

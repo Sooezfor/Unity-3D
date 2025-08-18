@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Single_Move : MonoBehaviour
+public class Single_Move
 {
     public int x, y;
     public int player;

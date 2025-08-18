@@ -16,11 +16,17 @@ public class FarmerController : MonoBehaviour
     Vector3 velocity;
     const float GRAVITY = -9.8f;
 
-    private void Start()
+    private void Awake()
     {
-        anim = GetComponent<Animator>();
+        int ccIndex = LoadSceneManager.Instance.ccIndex;
+
+        transform.GetChild(ccIndex).gameObject.SetActive(true);
+
+        anim = transform.GetChild(ccIndex).GetComponent<Animator>();
         cc = GetComponent<CharacterController>();
+        
     }
+
     private void Update()
     {
         velocity.y += GRAVITY;

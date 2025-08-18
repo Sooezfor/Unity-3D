@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,18 +13,18 @@ public class SingleBoard_Controller : MonoBehaviour
     Single_BoardTicTacToe gameBoard;
     Single_Cell[,] cells = new Single_Cell[3, 3];
 
+    public static Action startAction;
+
     private void Awake()
     {
         restartButton.onClick.AddListener(StartGame); //등록
 
-    }
+        startAction += StartGame;
 
-    private void Start()
-    {
-        StartGame();
     }
+   
 
-    void StartGame()
+    public void StartGame()
     {
         gameBoard = new Single_BoardTicTacToe();
 
@@ -52,17 +53,17 @@ public class SingleBoard_Controller : MonoBehaviour
 
     void OnCellClicked(int x, int y) //Cell을 눌러서 O 나 X를 적용
     {
-        if (gameBoard.IsGameOver() || gameBoard.board[y, x] != 0)
+        if (gameBoard.IsGameOver() || gameBoard.board[y, x] != 0) //게임 끝났는지 아닌지 확인
             return;
 
-        Single_Move move = new Single_Move(x, y, gameBoard.player);
+        Single_Move move = new Single_Move(x, y, gameBoard.player); 
         gameBoard.MakeMove(move);
 
         UpdateBoardVisual();
         CheckForGameOver();
     }
 
-    private void UpdateBoardVisual()
+    private void UpdateBoardVisual() //클릭한 셀에 대해서 O나 X를 남기는 기능
     {
         for (int i = 0; i < 3; i++)
         {
@@ -79,18 +80,18 @@ public class SingleBoard_Controller : MonoBehaviour
         }
     }
 
-    void CheckForGameOver()
+    void CheckForGameOver() //
     {
         int winner = gameBoard.CheckWinner();
-        if (winner == 0)
+        if (winner == 0) //위너가 없고 현재 진행 중
         {
             string nextPlayer = gameBoard.player == 1 ? "X" : "O";
             statusText.text = $"Player : {nextPlayer} Turn";
             return;
         }
-        if (winner == 3)
+        if (winner == 3) //무승부
             statusText.text = "Draw";
-         else
+         else //1이나 2가 이긴 경우
          {
             string result = winner == 1 ? "X" : "O";
             statusText.text = $"Player {result} Win";

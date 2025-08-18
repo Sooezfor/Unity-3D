@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
+using System;
+using Random = UnityEngine.Random;
 
 public class AnimalControll : MonoBehaviour
 {

@@ -33,10 +33,10 @@ public class Single_BoardTicTacToe
 
     public void MakeMove(Single_Move move) //칸을 선택하는 기능 
     {
-        if (board[move.x, move.y] != 0) //현재 어떤 플레이어가 둔 상태
+        if (board[move.y, move.x] != 0) //현재 어떤 플레이어가 둔 상태
             return;
 
-        board[move.x, move.y] = move.player; //Player는 1과 2
+        board[move.y, move.x] = move.player; //Player는 1과 2
         this.player = (move.player) == 1 ? 2 : 1; //이전 턴 플레이어가 1이라면 현재 턴 플레이어는 2로 바꿔주기
     }
 

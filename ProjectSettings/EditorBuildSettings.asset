@@ -5,15 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/3.UnityBook/1.Scenes/FPS shooter/LoginScene.unity
     guid: 5409cd24c15c71d40a8115db408fa326
-  - enabled: 1
+  - enabled: 0
     path: Assets/3.UnityBook/1.Scenes/FPS shooter/Loading Scene.unity
     guid: 77690e05a832f5842b66fee476a22dc3
-  - enabled: 1
+  - enabled: 0
     path: Assets/3.UnityBook/1.Scenes/FPS shooter/Main Scene.unity
     guid: 3d7a93294d85d3a4191adf231d8ffdae
+  - enabled: 1
+    path: Assets/05.Farm/01.Scene/Intro.unity
+    guid: 189df3420a6cd1049bdfe7c484cef236
+  - enabled: 1
+    path: Assets/05.Farm/01.Scene/Character.unity
+    guid: 87a84d588ca728b428225fe3205dcf9b
+  - enabled: 1
+    path: Assets/05.Farm/01.Scene/Main.unity
+    guid: 473ea2c7462ecc8498d179634b3bb2dc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 47b28384050c0434eb71bf2dddfcb54b, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T instance; //내부변수
+    protected static T instance; //내부변수
     public static T Instance //프로퍼티
     {
         get

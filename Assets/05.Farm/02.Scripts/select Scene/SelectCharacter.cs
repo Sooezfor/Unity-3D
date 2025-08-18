@@ -67,6 +67,7 @@ public class SelectCharacter : MonoBehaviour
     private void Select()
     {
         Debug.Log($"현재 선택한 캐릭터는 {currentIndex}번째 캐릭터입니다.");
+        LoadSceneManager.Instance.SetCharacterIndex(currentIndex); //선택한 캐릭터 인덱스 저장 
 
         StartCoroutine(SelectRoutine());
     }
@@ -77,11 +78,6 @@ public class SelectCharacter : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        Fade.onFadeAction?.Invoke(3f, Color.white, true, null);
-
-        yield return new WaitForSeconds(3.5f);
-
-        //Load Scene
+        LoadSceneManager.Instance.OnLoadScene();             
     }
-
 }

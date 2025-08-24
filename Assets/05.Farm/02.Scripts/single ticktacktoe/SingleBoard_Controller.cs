@@ -9,6 +9,7 @@ public class SingleBoard_Controller : MonoBehaviour
     [SerializeField] Transform cellGroup;
     [SerializeField] TextMeshProUGUI statusText;
     [SerializeField] Button restartButton;
+    [SerializeField] Button outButton;
 
     Single_BoardTicTacToe gameBoard;
     Single_Cell[,] cells = new Single_Cell[3, 3];
@@ -21,6 +22,8 @@ public class SingleBoard_Controller : MonoBehaviour
 
         startAction += StartGame;
 
+        outButton.onClick.AddListener(OutGame);
+
     }
    
 
@@ -30,6 +33,7 @@ public class SingleBoard_Controller : MonoBehaviour
 
         statusText.text = "Player X Turn";
         restartButton.gameObject.SetActive(false);
+        outButton.gameObject.SetActive(false);
 
         for (int i = 0; i < cellGroup.childCount; i++)
         {
@@ -97,6 +101,12 @@ public class SingleBoard_Controller : MonoBehaviour
             statusText.text = $"Player {result} Win";
          }
         restartButton.gameObject.SetActive(true);
+        outButton.gameObject.SetActive(true);
         }
+
+    void OutGame()
+    {
+        GameManager.Instance.SetcamerState(CameraState.House);
+    }
  }
 

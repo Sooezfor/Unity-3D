@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +10,9 @@ public class AnimalEvent : MonoBehaviour
     [SerializeField] GameObject followTarget;
     [SerializeField] CinemachineClearShot clearShot;
     [SerializeField] GameObject flag;
+    [SerializeField] GameObject animalUi;
+    [SerializeField] TextMeshProUGUI noticeText;
+    [SerializeField] TextMeshProUGUI timerText;
     BoxCollider coll;
 
     float timer;
@@ -16,6 +21,8 @@ public class AnimalEvent : MonoBehaviour
 
     private void Start()
     {
+        timerText.text = "";
+        noticeText.text = "";
         failAction += SetRandomPosition;
         coll = GetComponent<BoxCollider>();
     }
@@ -25,6 +32,7 @@ public class AnimalEvent : MonoBehaviour
             return;
 
         timer += Time.deltaTime;
+        timerText.text = $"time : {timer.ToString("F2")}";
     }  
 
     private void OnTriggerEnter(Collider other)
@@ -44,14 +52,14 @@ public class AnimalEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"깃발 찾는데 걸린 시간은 {timer:F1}초입니다.");
+            StartCoroutine(Notify());
             isTimer = false;
             timer = 0f;
             SetFlag(Vector3.zero, false);
 
             GameManager.Instance.SetcamerState(CameraState.Outside);
             followTarget.SetActive(false);
-
+            
         }
     }
     void SetRandomPosition()
@@ -69,5 +77,15 @@ public class AnimalEvent : MonoBehaviour
         flag.transform.SetParent(transform);
         flag.transform.position = pos;
         flag.SetActive(isActive);
+    }
+
+    IEnumerator Notify()
+    {        
+        animalUi.SetActive(true);
+        noticeText.text = $"깃발 찾는데 걸린 시간은 {timer:F1}초입니다.";
+        yield return new WaitForSeconds(3f);
+
+        animalUi.SetActive(false);
+        timerText.text = "";
     }
 }
